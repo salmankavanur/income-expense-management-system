@@ -13,10 +13,10 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 |--------------------------------------------------------------------------
 */
 
-// Redirect root URL to the login page if not authenticated
+// Redirect root URL to dashboard if authenticated, otherwise to login page
 Route::get('/', function () {
     return redirect('/dashboard');
-})->middleware(['auth', 'verified']);
+})->middleware(['auth', 'verified'])->name('homepage');
 
 // Authenticated routes (users need to be logged in)
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -34,9 +34,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Transaction CRUD Routes (for income/expense transactions)
     Route::resource('transactions', TransactionController::class);
 
+    // Logout Route
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->name('logout');
-
+        ->name('logout');
 });
 
 // Include the default Laravel authentication routes (login, register, etc.)
