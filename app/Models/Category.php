@@ -9,6 +9,12 @@ class Category extends Model
 {
     use HasFactory;
 
+    // Mass assignment protection
+    protected $fillable = [
+        'name',
+        'type',
+    ];
+
     /**
      * Define the inverse relationship: Category has many Transactions.
      */
