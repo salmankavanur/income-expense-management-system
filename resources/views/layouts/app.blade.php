@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Income Expense Management')</title>
-    <!-- TailwindCSS -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+    <!-- Vite: Include compiled CSS -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     <!-- Alpine.js -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
@@ -34,8 +35,5 @@
     <footer class="bg-gray-100 dark:bg-gray-800 p-4 text-center">
         <p class="text-sm text-gray-600 dark:text-gray-400">© 2024 Income Expense Management</p>
     </footer>
-
-     <!-- Include compiled JS -->
-     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
