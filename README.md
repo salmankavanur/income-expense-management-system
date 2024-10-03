@@ -7,6 +7,79 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+![screencapture-127-0-0-1-8000-dashboard-2024-10-03-16_34_08](https://github.com/user-attachments/assets/17ab54c2-4af9-4482-8c17-01dae87bd9bd)
+![screencapture-127-0-0-1-8000-categories-2024-10-03-16_36_42](https://github.com/user-attachments/assets/5cc1b324-73a9-4c75-bb84-f7123660668c)
+![screencapture-127-0-0-1-8000-transactions-create-2024-10-03-16_37_10](https://github.com/user-attachments/assets/801e340d-af14-4b7b-9659-110b35e95226)
+
+# Income Expense Management System
+
+## Project Overview
+**Income Expense Management** is a web-based application designed to help users efficiently manage their financial transactions. With features for tracking income and expenses across multiple categories, this project provides clear and concise overviews of financial data, empowering users to make informed financial decisions. The application is built using modern web technologies including **Laravel**, **Tailwind CSS**, and **Alpine.js**, with a focus on simplicity, performance, and ease of use.
+
+## Key Features
+- **User Roles & Permissions**: Different roles such as Super Admin, Admin, and Accountant with varying levels of access control, powered by the **Spatie Laravel Permissions** package.
+- **Income & Expense Tracking**: Categorize and log financial transactions, helping users easily track their income and expenses.
+- **Category-wise Analytics**: Visualize income and expenses by category with **charts and graphs** powered by **Chart.js**, providing detailed insights into spending and earnings.
+- **Dark Mode Support**: The application supports dark mode, enhancing the user experience in low-light environments.
+- **Responsive Design**: Built with a responsive design, the application works seamlessly across desktop, tablet, and mobile devices.
+- **Transaction CRUD**: Full **Create, Read, Update, Delete** (CRUD) capabilities for transactions, allowing users to easily manage and review their financial data.
+- **User Management**: Super Admins can create, update, or delete users with assigned roles.
+
+## Technologies Used
+- **Laravel** (PHP framework) for back-end development
+- **Tailwind CSS** for responsive and modern styling
+- **Alpine.js** for interactive front-end functionality
+- **Chart.js** for generating charts and data visualizations
+- **MySQL** for data storage
+- **Spatie Laravel Permissions** for role and permission management
+
+## Installation & Setup Guide
+
+### Step 1: Clone the repository
+```bash
+git clone https://github.com/salmankavanur/income-expense-management-system.git
+```
+### Step 2: Navigate to the project directory
+```bash
+cd income-expense-management-system
+```
+### Step 3: Install the required dependencies
+First, install PHP dependencies using Composer:
+```bash
+composer install
+```
+Next, install the Node.js dependencies using npm:
+```bash
+npm install
+```
+### Step 4: Set up the environment variables
+```bash
+cp .env.example .env
+```
+### Step 5: Generate the application key
+```bash
+php artisan key:generate
+```
+### Step 6: Run the database migrations
+```bash
+php artisan migrate --seed
+```
+### Step 7: Compile the front-end assets
+Build the front-end assets using Vite (required for Tailwind CSS and JavaScript compilation):
+
+```bash
+npm run build
+```
+For development mode (to automatically watch for changes):
+```bash
+npm run dev
+
+```
+### Step 8: Start the development server
+```bash
+php artisan serve
+```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
