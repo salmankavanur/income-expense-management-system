@@ -49,10 +49,10 @@ First, install PHP dependencies using Composer:
 composer install
 ```
 Next, install the Node.js dependencies using npm:
-### Step 4: Set up the environment variables
 ```bash
 npm install
 ```
+### Step 4: Set up the environment variables
 ```bash
 cp .env.example .env
 ```
