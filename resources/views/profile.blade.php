@@ -1,3 +1,4 @@
+<!-- resources/views/profile.blade.php -->
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -7,19 +8,31 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <!-- Update Profile Information -->
+            <div class="p-6 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                    {{ __('Update Profile Information') }}
+                </h3>
                 <div class="max-w-xl">
                     <livewire:profile.update-profile-information-form />
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <!-- Update Password -->
+            <div class="p-6 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                    {{ __('Update Password') }}
+                </h3>
                 <div class="max-w-xl">
                     <livewire:profile.update-password-form />
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <!-- Delete Account -->
+            <div class="p-6 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+                    {{ __('Delete Account') }}
+                </h3>
                 <div class="max-w-xl">
                     <livewire:profile.delete-user-form />
                 </div>
