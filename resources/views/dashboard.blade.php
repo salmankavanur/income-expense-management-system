@@ -76,16 +76,20 @@
 
         <!-- Charts for Category-Wise Analytics -->
         <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Bar Chart for Income by Category -->
-            <div class="relative w-full h-96 max-w-lg mx-auto"> <!-- Set height and width -->
+            <!-- Bar Chart for Income by Category in a Container -->
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Income by Category</h3>
-                <canvas id="incomeCategoryChart"></canvas>
+                <div class="relative w-full h-96"> <!-- Set height and width -->
+                    <canvas id="incomeCategoryChart"></canvas>
+                </div>
             </div>
 
-            <!-- Pie Chart for Expense by Category -->
-            <div class="relative w-full h-96 max-w-lg mx-auto"> <!-- Set height and width -->
+            <!-- Pie Chart for Expense by Category in a Container -->
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Expense by Category</h3>
-                <canvas id="expenseCategoryChart"></canvas>
+                <div class="relative w-full h-96"> <!-- Set height and width -->
+                    <canvas id="expenseCategoryChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
