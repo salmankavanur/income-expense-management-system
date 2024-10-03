@@ -3,9 +3,9 @@
 @section('content')
 <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
     <!-- Navigation Bar -->
-    <nav class="bg-white dark:bg-gray-800 shadow-md">
+    <nav class="bg-white dark:bg-gray-800 shadow-md rounded-full"> <!-- Changed 'rounded-lg' to 'rounded-full' -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex justify-between items-center h-16"> <!-- Use items-center for vertical alignment -->
                 <div class="flex space-x-4">
                     <!-- Navigation Links -->
                     <a href="{{ route('dashboard') }}" class="text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">
@@ -21,7 +21,7 @@
                         Transactions
                     </a>
                 </div>
-
+    
                 <div class="flex items-center space-x-4">
                     <!-- Logout Button -->
                     <form method="POST" action="{{ route('logout') }}">
@@ -34,6 +34,7 @@
             </div>
         </div>
     </nav>
+    
 
     <!-- Main Content -->
     <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
