@@ -76,17 +76,16 @@
 
         <!-- Charts for Category-Wise Analytics -->
         <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
+            <!-- Bar Chart for Income by Category -->
+            <div class="relative w-full h-96 max-w-lg mx-auto"> <!-- Set height and width -->
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Income by Category</h3>
-                <div class="relative w-full max-w-lg mx-auto">
-                    <canvas id="incomeCategoryChart"></canvas>
-                </div>
+                <canvas id="incomeCategoryChart"></canvas>
             </div>
-            <div>
+
+            <!-- Pie Chart for Expense by Category -->
+            <div class="relative w-full h-96 max-w-lg mx-auto"> <!-- Set height and width -->
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Expense by Category</h3>
-                <div class="relative w-full max-w-lg mx-auto">
-                    <canvas id="expenseCategoryChart"></canvas>
-                </div>
+                <canvas id="expenseCategoryChart"></canvas>
             </div>
         </div>
     </div>
@@ -105,22 +104,31 @@
     const expenseCategories = @json($expenseByCategory->pluck('category.name'));
     const expenseData = @json($expenseByCategory->pluck('total'));
 
+    // Bar Chart for Income by Category
     new Chart(incomeCategoryChartCtx, {
-        type: 'pie',
+        type: 'bar',
         data: {
             labels: incomeCategories,
             datasets: [{
                 label: 'Income by Category',
                 data: incomeData,
-                backgroundColor: ['#34D399', '#3B82F6', '#F59E0B', '#EF4444', '#10B981'],
+                backgroundColor: '#34D399', // A shade of green for income
+                borderColor: '#059669',
+                borderWidth: 1
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
     });
 
+    // Pie Chart for Expense by Category
     new Chart(expenseCategoryChartCtx, {
         type: 'pie',
         data: {
@@ -128,7 +136,7 @@
             datasets: [{
                 label: 'Expense by Category',
                 data: expenseData,
-                backgroundColor: ['#EF4444', '#F59E0B', '#3B82F6', '#34D399', '#10B981'],
+                backgroundColor: ['#EF4444', '#F59E0B', '#3B82F6', '#34D399', '#10B981'], // Different colors for each category
             }]
         },
         options: {
