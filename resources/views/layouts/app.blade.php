@@ -20,7 +20,10 @@
     <!-- Navbar -->
     <nav class="p-4 bg-gray-100 dark:bg-gray-800">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Income Expense Management</h1>
+            <!-- Replace text with the logo -->
+            <a href="{{ route('dashboard') }}">
+                <img src="{{ asset('images/income-expense-m-logo-04.svg') }}" alt="Income Expense Management Logo" class="h-10"> <!-- Adjust the height as needed -->
+            </a>
 
             <div class="flex items-center space-x-4">
                 <!-- Back to Home Button (visible on sub-pages only) -->
@@ -52,6 +55,7 @@
         </div>
     </nav>
 
+
     <!-- Main Content -->
     <main class="flex-grow container mx-auto py-8">
         @yield('content')
@@ -59,7 +63,7 @@
 
     <!-- Footer -->
     <footer class="bg-gray-100 dark:bg-gray-800 p-4 text-center">
-        <p class="text-sm text-gray-600 dark:text-gray-400">© 2024 Income Expense Management</p>
+        <p class="text-sm text-gray-600 dark:text-gray-400">© 2024 Income-Expense Management System</p>
     </footer>
 </body>
 </html>
