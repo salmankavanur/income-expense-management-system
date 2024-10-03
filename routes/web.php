@@ -15,29 +15,28 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 // Redirect root URL to dashboard if authenticated, otherwise to login page
 Route::get('/', function () {
-    return redirect('/dashboard');
+    return redirect()->route('dashboard');
 })->middleware(['auth', 'verified'])->name('homepage');
 
-// Authenticated routes (users need to be logged in)
+// Authenticated routes
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    // Dashboard Route
+    // Dashboard
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // Profile Route
-    Route::get('profile', [ProfileController::class, 'show'])->name('profile');
-    Route::put('profile', [ProfileController::class, 'update']);
+    // Profile (GET and PUT for showing and updating profile)
+    Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 
-    // Category CRUD Routes (for income/expense categories)
+    // Categories (CRUD)
     Route::resource('categories', CategoryController::class);
 
-    // Transaction CRUD Routes (for income/expense transactions)
+    // Transactions (CRUD)
     Route::resource('transactions', TransactionController::class);
 
-    // Logout Route
-    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
+    // Logout
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
-// Include the default Laravel authentication routes (login, register, etc.)
+// Include the default Laravel authentication routes
 require __DIR__.'/auth.php';
