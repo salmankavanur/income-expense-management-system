@@ -38,15 +38,48 @@
 ### Step 1: Clone the repository
 ```bash
 git clone https://github.com/salmankavanur/income-expense-management-system.git
+```
+### Step 2: Navigate to the project directory
+```bash
 cd income-expense-management-system
+```
+### Step 3: Install the required dependencies
+First, install PHP dependencies using Composer:
+```bash
 composer install
+```
+Next, install the Node.js dependencies using npm:
+### Step 4: Set up the environment variables
+```bash
 npm install
+```
+```bash
 cp .env.example .env
+```
+### Step 5: Generate the application key
+```bash
 php artisan key:generate
+```
+### Step 6: Run the database migrations
+```bash
 php artisan migrate --seed
+```
+### Step 7: Compile the front-end assets
+Build the front-end assets using Vite (required for Tailwind CSS and JavaScript compilation):
+
+```bash
 npm run build
+```
+For development mode (to automatically watch for changes):
+```bash
+npm run dev
+
+```
+### Step 8: Start the development server
+```bash
 php artisan serve
 ```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
