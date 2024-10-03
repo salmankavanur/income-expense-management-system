@@ -20,7 +20,17 @@
                     <a href="{{ route('transactions.index') }}" class="text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">
                         Transactions
                     </a>
+                
+                    <!-- Users Menu for Super Admin -->
+                    @if(auth()->user()->hasRole('Super Admin'))
+                    <a href="{{ route('users.index') }}" class="text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">
+                        Users
+                    </a>
+                    
+                @endif
+                
                 </div>
+                
     
                 <div class="flex items-center space-x-4">
                     <!-- Logout Button -->

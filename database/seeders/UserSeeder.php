@@ -14,28 +14,36 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        // Create roles if they do not exist
+        $superAdminRole = Role::firstOrCreate(['name' => 'Super Admin']);
+        $adminRole = Role::firstOrCreate(['name' => 'Admin']);
+        $accountantRole = Role::firstOrCreate(['name' => 'Accountant']);
+
         // Create Super Admin user
-        $superAdmin = User::create([
-            'name' => 'Super Admin',
+        $superAdmin = User::firstOrCreate([
             'email' => 'superadmin@example.com',
+        ], [
+            'name' => 'Super Admin',
             'password' => Hash::make('password123'), // Default password
         ]);
-        $superAdmin->assignRole('Super Admin');
+        $superAdmin->assignRole($superAdminRole);
 
         // Create Admin user
-        $admin = User::create([
-            'name' => 'Admin User',
+        $admin = User::firstOrCreate([
             'email' => 'admin@example.com',
+        ], [
+            'name' => 'Admin User',
             'password' => Hash::make('password123'), // Default password
         ]);
-        $admin->assignRole('Admin');
+        $admin->assignRole($adminRole);
 
         // Create Accountant user
-        $accountant = User::create([
-            'name' => 'Accountant User',
+        $accountant = User::firstOrCreate([
             'email' => 'accountant@example.com',
+        ], [
+            'name' => 'Accountant User',
             'password' => Hash::make('password123'), // Default password
         ]);
-        $accountant->assignRole('Accountant');
+        $accountant->assignRole($accountantRole);
     }
 }

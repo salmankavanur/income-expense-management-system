@@ -10,7 +10,8 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = Transaction::with('category')->get();
+        // Fetch only the transactions of the authenticated user
+        $transactions = Transaction::where('user_id', auth()->id())->with('category')->get();
         return view('transactions.index', compact('transactions'));
     }
 
@@ -29,37 +30,54 @@ class TransactionController extends Controller
         ]);
 
         Transaction::create([
-            'user_id' => auth()->id(),
+            'user_id' => auth()->id(), // Associate the transaction with the logged-in user
             'category_id' => $request->category_id,
             'amount' => $request->amount,
             'description' => $request->description,
             'date' => $request->date,
         ]);
 
-        return redirect()->route('transactions.index');
+        return redirect()->route('transactions.index')->with('success', 'Transaction created successfully.');
     }
 
     public function edit(Transaction $transaction)
     {
+        // Ensure that only the owner of the transaction can edit it
+        if ($transaction->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $categories = Category::all();
         return view('transactions.edit', compact('transaction', 'categories'));
     }
 
     public function update(Request $request, Transaction $transaction)
     {
+        // Ensure that only the owner of the transaction can update it
+        if ($transaction->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $request->validate([
             'category_id' => 'required',
             'amount' => 'required|numeric',
             'date' => 'required|date',
         ]);
 
-        $transaction->update($request->all());
-        return redirect()->route('transactions.index');
+        // Only update the allowed fields (excluding user_id)
+        $transaction->update($request->only('category_id', 'amount', 'description', 'date'));
+
+        return redirect()->route('transactions.index')->with('success', 'Transaction updated successfully.');
     }
 
     public function destroy(Transaction $transaction)
     {
+        // Ensure that only the owner of the transaction can delete it
+        if ($transaction->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $transaction->delete();
-        return redirect()->route('transactions.index');
+        return redirect()->route('transactions.index')->with('success', 'Transaction deleted successfully.');
     }
 }

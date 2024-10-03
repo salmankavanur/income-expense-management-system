@@ -4,16 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::table('transactions', function (Blueprint $table) {
-            // Add the user_id column as a foreign key to the users table
-            $table->foreignId('user_id')->after('id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Add foreign key to the users table
         });
     }
 
@@ -23,9 +21,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('transactions', function (Blueprint $table) {
-            // Drop the user_id foreign key and column
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
+            $table->dropForeign(['user_id']); // Drop foreign key
+            $table->dropColumn('user_id');    // Drop column
         });
     }
 };

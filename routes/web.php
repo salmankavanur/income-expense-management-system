@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController; // Add UserController
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
@@ -33,6 +34,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Transactions (CRUD)
     Route::resource('transactions', TransactionController::class);
+
+    // User Management (only accessible by Super Admin)
+    Route::middleware('role:Super Admin')->group(function () {
+        Route::resource('users', UserController::class); // CRUD for managing users
+    });
 
     // Logout
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
