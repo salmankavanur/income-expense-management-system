@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+<div class="min-h-screen bg-gray-100 dark:bg-gray-900" style="--tw-bg-opacity: 0;">
     <!-- Navigation Bar -->
-    <nav class="bg-white dark:bg-gray-800 shadow-md rounded-full"> <!-- Changed 'rounded-lg' to 'rounded-full' -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md rounded-full">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16"> <!-- Use items-center for vertical alignment -->
+            <div class="flex justify-between items-center h-16">
                 <div class="flex space-x-4">
                     <!-- Navigation Links -->
                     <a href="{{ route('dashboard') }}" class="text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">
@@ -26,11 +26,8 @@
                     <a href="{{ route('users.index') }}" class="text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">
                         Users
                     </a>
-                    
-                @endif
-                
+                    @endif
                 </div>
-                
     
                 <div class="flex items-center space-x-4">
                     <!-- Logout Button -->
@@ -44,7 +41,6 @@
             </div>
         </div>
     </nav>
-    
 
     <!-- Main Content -->
     <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -90,7 +86,7 @@
             <!-- Bar Chart for Income by Category in a Container -->
             <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Income by Category</h3>
-                <div class="relative w-full h-96"> <!-- Set height and width -->
+                <div class="relative w-full h-96">
                     <canvas id="incomeCategoryChart"></canvas>
                 </div>
             </div>
@@ -98,7 +94,7 @@
             <!-- Pie Chart for Expense by Category in a Container -->
             <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Expense by Category</h3>
-                <div class="relative w-full h-96"> <!-- Set height and width -->
+                <div class="relative w-full h-96">
                     <canvas id="expenseCategoryChart"></canvas>
                 </div>
             </div>
