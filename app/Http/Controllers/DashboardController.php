@@ -9,16 +9,42 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $totalIncome = Transaction::whereHas('category', function($query) {
+        // Total Income
+        $totalIncome = Transaction::whereHas('category', function ($query) {
             $query->where('type', 'income');
         })->sum('amount');
 
-        $totalExpense = Transaction::whereHas('category', function($query) {
+        // Total Expense
+        $totalExpense = Transaction::whereHas('category', function ($query) {
             $query->where('type', 'expense');
         })->sum('amount');
 
+        // Calculate Balance
         $balance = $totalIncome - $totalExpense;
 
-        return view('dashboard', compact('totalIncome', 'totalExpense', 'balance'));
+        // Category-wise Income
+        $incomeByCategory = Transaction::whereHas('category', function ($query) {
+            $query->where('type', 'income');
+        })->selectRaw('category_id, SUM(amount) as total')
+          ->groupBy('category_id')
+          ->with('category')  // Assuming you have a relationship with categories
+          ->get();
+
+        // Category-wise Expense
+        $expenseByCategory = Transaction::whereHas('category', function ($query) {
+            $query->where('type', 'expense');
+        })->selectRaw('category_id, SUM(amount) as total')
+          ->groupBy('category_id')
+          ->with('category')
+          ->get();
+
+        // Passing data to the view
+        return view('dashboard', compact(
+            'totalIncome',
+            'totalExpense',
+            'balance',
+            'incomeByCategory',
+            'expenseByCategory'
+        ));
     }
 }

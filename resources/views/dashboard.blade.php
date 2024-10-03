@@ -5,7 +5,7 @@
     <!-- Navigation Bar -->
     <nav class="bg-white dark:bg-gray-800 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16"> <!-- Use items-center for vertical alignment -->
+            <div class="flex justify-between items-center h-16">
                 <div class="flex space-x-4">
                     <!-- Navigation Links -->
                     <a href="{{ route('dashboard') }}" class="text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">
@@ -14,7 +14,6 @@
                     <a href="{{ route('profile.show') }}" class="text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">
                         Profile
                     </a>
-                    
                     <a href="{{ route('categories.index') }}" class="text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">
                         Categories
                     </a>
@@ -74,6 +73,68 @@
                 <p class="text-gray-500 dark:text-gray-400 mt-2">Your current balance</p>
             </div>
         </div>
+
+        <!-- Charts for Category-Wise Analytics -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Income by Category</h3>
+                <div class="relative w-full max-w-lg mx-auto">
+                    <canvas id="incomeCategoryChart"></canvas>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Expense by Category</h3>
+                <div class="relative w-full max-w-lg mx-auto">
+                    <canvas id="expenseCategoryChart"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Chart.js Integration -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const incomeCategoryChartCtx = document.getElementById('incomeCategoryChart').getContext('2d');
+    const expenseCategoryChartCtx = document.getElementById('expenseCategoryChart').getContext('2d');
+
+    const incomeCategories = @json($incomeByCategory->pluck('category.name'));
+    const incomeData = @json($incomeByCategory->pluck('total'));
+
+    const expenseCategories = @json($expenseByCategory->pluck('category.name'));
+    const expenseData = @json($expenseByCategory->pluck('total'));
+
+    new Chart(incomeCategoryChartCtx, {
+        type: 'pie',
+        data: {
+            labels: incomeCategories,
+            datasets: [{
+                label: 'Income by Category',
+                data: incomeData,
+                backgroundColor: ['#34D399', '#3B82F6', '#F59E0B', '#EF4444', '#10B981'],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        }
+    });
+
+    new Chart(expenseCategoryChartCtx, {
+        type: 'pie',
+        data: {
+            labels: expenseCategories,
+            datasets: [{
+                label: 'Expense by Category',
+                data: expenseData,
+                backgroundColor: ['#EF4444', '#F59E0B', '#3B82F6', '#34D399', '#10B981'],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        }
+    });
+</script>
 @endsection
